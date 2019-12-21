@@ -9,7 +9,9 @@ class App extends React.Component {
       wordArr: words,
       word: '',
       splitWord: [],
-      hiddenWord: []
+      hiddenWord: [],
+      maxTries: 10,
+      key: ''
     }
   }
 
@@ -53,14 +55,18 @@ class App extends React.Component {
     // return hiddenWord
   }
 
-
+  handleInput = e => {
+    this.setState({
+      key: String.fromCharCode(e.charCode)
+    })
+  }
 
   render() {
     console.log(this.state);
 
     return (
       <div className="App">
-
+        <input type="text" onKeyPress={this.handleInput} />
       </div>
     );
   }
