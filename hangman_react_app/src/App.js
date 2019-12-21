@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import words from './components/words'
+import Game from './components/Game'
 
 class App extends React.Component {
   constructor() {
@@ -11,7 +12,6 @@ class App extends React.Component {
       splitWord: [],
       hiddenWord: [],
       maxTries: 10,
-      key: ''
     }
   }
 
@@ -48,25 +48,16 @@ class App extends React.Component {
     this.setState({
       hiddenWord: wordUnderscore
     })
-
-    // for (let i = 0; i < word.length; i++) {
-    //   hiddenWord[i] = "_";
-    // }
-    // return hiddenWord
   }
 
-  handleInput = e => {
-    this.setState({
-      key: String.fromCharCode(e.charCode)
-    })
-  }
 
   render() {
-    console.log(this.state);
+    console.log('App state', this.state);
+    const { splitWord, hiddenWord } = this.state
 
     return (
       <div className="App">
-        <input type="text" onKeyPress={this.handleInput} />
+        <Game splitWord={splitWord} hiddenWord={hiddenWord} />
       </div>
     );
   }
