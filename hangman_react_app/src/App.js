@@ -1,26 +1,69 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import words from './components/words'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      wordArr: words,
+      word: '',
+      splitWord: [],
+      hiddenWord: []
+    }
+  }
+
+
+
+  componentDidMount() {
+    this.randomGen()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.word !== prevState.word) {
+      this.underScore()
+    }
+  }
+
+  randomGen = () => {
+    const { wordArr } = this.state
+    let generatedWord = wordArr[Math.floor(Math.random() * words.length)];
+    this.setState({
+      word: generatedWord,
+      splitWord: generatedWord.split('')
+    })
+
+  }
+
+  underScore = () => {
+    let { splitWord } = this.state
+
+    let wordUnderscore = []
+    splitWord.forEach(el => {
+      wordUnderscore.push("_")
+    })
+
+    this.setState({
+      hiddenWord: wordUnderscore
+    })
+
+    // for (let i = 0; i < word.length; i++) {
+    //   hiddenWord[i] = "_";
+    // }
+    // return hiddenWord
+  }
+
+
+
+  render() {
+    console.log(this.state);
+
+    return (
+      <div className="App">
+
+      </div>
+    );
+  }
 }
 
 export default App;
