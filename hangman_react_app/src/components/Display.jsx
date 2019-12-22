@@ -1,7 +1,7 @@
 import React from 'react'
 import './game.css'
 const Display = (props) => {
-    const { hiddenWord, rightGuesses, wrongGuesses, maxTries, message } = props
+    const { hiddenWord, rightGuesses, wrongGuesses, maxTries, message, generateWord } = props
 
 
     return (<div className='display'>
@@ -16,8 +16,8 @@ const Display = (props) => {
                 <p>Wrong Guesses</p>
                 <p>{wrongGuesses}</p>
             </div>
-
             <p>{message}</p>
+            <button onClick={generateWord}>Reload</button>
         </div>
     </div>
     )

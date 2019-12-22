@@ -5,12 +5,13 @@ import Game from './Game'
 class App extends React.Component {
     constructor() {
         super()
-        this.state = {
+        this.initialState = {
             wordArr: words,
             word: '',
             splitWord: [],
             hiddenWord: [],
         }
+        this.state = this.initialState
     }
 
 
@@ -58,7 +59,7 @@ class App extends React.Component {
                 <div className='title'>
                     <h1>HangMan</h1>
                 </div>
-                <Game splitWord={splitWord} hiddenWord={hiddenWord} maxTries={this.props.maxTries} />
+                <Game splitWord={splitWord} hiddenWord={hiddenWord} maxTries={this.props.maxTries} randomGen={this.randomGen} />
             </div>
         );
     }

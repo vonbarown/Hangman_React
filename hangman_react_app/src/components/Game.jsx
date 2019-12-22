@@ -1,18 +1,19 @@
-import React from 'react'
-import Display from './Display'
+import React from 'react';
+import { toast } from 'react-toastify';
+import Display from './Display';
 
 
 class Game extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
+        this.initialState = {
             key: '',
+            message: '',
+            maxTries: 10,
             rightGuesses: [],
             wrongGuesses: [],
-            sound: '',
-            message: '',
-            maxTries: 10
         }
+        this.state = this.initialState
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -39,7 +40,7 @@ class Game extends React.Component {
 
     checkWrongGuess = (userInput) => {
         let { wrongGuesses } = this.state
-        if (!wrongGuesses.includes(userInput)) {
+        if (!wrongGuesses.includes(userInput) && userInput !== '') {
             wrongGuesses.push(userInput)
             this.setState({
                 wrongGuesses: wrongGuesses
@@ -53,20 +54,20 @@ class Game extends React.Component {
 
         for (let l = 0; l < splitWord.length; l++) {
             //checking if the letter is inside of the array and the space contains an underscore
-            if (splitWord[l].toLowerCase() === key.toLowerCase() && hiddenWord[l] === "_") {
+            if (splitWord[l].toLowerCase() === key.toLowerCase() && hiddenWord[l] === "_" && key.toLowerCase() !== '') {
                 hiddenWord[l] = key.toLowerCase();
                 // // this function ensures that the letter is not duplicated in the array
                 this.checkRightGuess(key.toLowerCase())
                 // // creating a win condition  to informs the user that they have won
                 if (splitWord.join('') === hiddenWord.join('')) {
                     this.setState({
-                        sound: "./2018-04-02_-_Beautiful_Village_-_David_Fesliyan.mp3",
                         message: `Congrats! You won`
                     })
+                    toast.success(`Congrats! You won`)
                 }
             }
 
-            if (!splitWord.includes(key.toLowerCase())) {
+            if (!splitWord.includes(key.toLowerCase()) && key.toLowerCase() !== '') {
                 this.setState({
                     maxTries: maxTries - 1
                 })
@@ -75,17 +76,32 @@ class Game extends React.Component {
 
             if (maxTries === 0) {
                 this.setState({
-                    message: `You lost. Press button to restart.`
+                    message: `You lost. Press button to restart.`,
+                    maxTries: 0
                 })
+                toast.error(`You lost. Press button to restart.`)
+                return
             }
         }
 
+    }
+
+    generateWord = () => {
+        this.props.randomGen()
+        this.setState({
+            key: '',
+            rightGuesses: [],
+            wrongGuesses: [],
+            message: '',
+            maxTries: 10
+        })
     }
 
     render() {
         console.log('Game state', this.state);
 
         let { rightGuesses, wrongGuesses, maxTries, sound, message } = this.state
+        // const { generateWord } = this.props
         return (
             <div className='game'>
                 <input type="text" onKeyPress={this.handleInput} />
@@ -96,6 +112,7 @@ class Game extends React.Component {
                     maxTries={maxTries}
                     sound={sound}
                     message={message}
+                    generateWord={this.generateWord}
                 />
             </div>
         )

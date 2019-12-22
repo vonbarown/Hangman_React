@@ -1,8 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Link, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import gameApp from './components/gameApp'
 import Home from './Home.jsx'
+
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +28,7 @@ class App extends React.Component {
           <Route exact path='/' component={Home}></Route>
           <Route path='/hangman/general' component={gameApp}></Route>
         </Switch>
+        <ToastContainer />
       </div>
     );
   }
