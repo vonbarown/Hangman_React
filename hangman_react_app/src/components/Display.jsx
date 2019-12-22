@@ -1,11 +1,11 @@
 import React from 'react'
 import './game.css'
 const Display = (props) => {
-    const { hiddenWord, rightGuesses, wrongGuesses, maxTries } = props
+    const { hiddenWord, rightGuesses, wrongGuesses, maxTries, message } = props
 
 
-    return (<div className={'display'}>
-        <p>{maxTries}</p>
+    return (<div className='display'>
+        <p>You hav {maxTries} chances remaining</p>
         <p>{hiddenWord.join(' ')}</p>
         <div className='guesses'>
             <div className='right'>
@@ -16,6 +16,8 @@ const Display = (props) => {
                 <p>Wrong Guesses</p>
                 <p>{wrongGuesses}</p>
             </div>
+
+            <p>{message}</p>
         </div>
     </div>
     )
