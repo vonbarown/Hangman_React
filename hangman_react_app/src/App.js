@@ -57,6 +57,9 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <div className='title'>
+          <h1>HangMan</h1>
+        </div>
         <Game splitWord={splitWord} hiddenWord={hiddenWord} />
       </div>
     );
