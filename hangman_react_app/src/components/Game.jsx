@@ -1,15 +1,17 @@
 import React from 'react'
 import Display from './Display'
 
+
 class Game extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             key: '',
             rightGuesses: [],
-            wrongLetter: [],
+            wrongGuesses: [],
             sound: '',
-            message: ''
+            message: '',
+            maxTries: 10
         }
     }
 
@@ -34,12 +36,22 @@ class Game extends React.Component {
             rightGuesses: rightGuesses
         })
     }
+    checkWrongGuess = (userInput) => {
+        let { wrongGuesses } = this.state
+        if (!wrongGuesses.includes(userInput)) {
+            wrongGuesses.push(userInput)
+        }
+        this.setState({
+            wrongGuesses: wrongGuesses
+        })
+    }
 
     validity = () => {
         const { splitWord, hiddenWord } = this.props
-        let { key } = this.state
 
-        console.log("key", splitWord)
+        let { key, maxTries } = this.state
+        console.log('max', maxTries);
+
         for (let l = 0; l < splitWord.length; l++) {
             //checking if the letter is inside of the array and the space contains an underscore
             if (splitWord[l].toLowerCase() === key.toLowerCase() && hiddenWord[l] === "_") {
@@ -54,6 +66,31 @@ class Game extends React.Component {
                     })
                 }
             }
+            if (!splitWord.includes(key.toLowerCase())) {
+                this.setState({
+                    maxTries: maxTries - 1
+                })
+                this.checkWrongGuess(key.toLowerCase())
+                // wrongGuess[0].innerHTML = wrongLetter.join(' ')
+                // remaining[0].innerHTML = `You have ${maxTries} lives remaining`
+                // // calling the image function to run whenever the player makes a bad guess
+                // image();
+
+                // if (wrongLetter.includes(keyWord)) {
+                //     console.log('hello');
+
+                // }
+            }
+            if (maxTries === 0) {
+                this.setState({
+                    message: `You lost. Press button to restart.`
+                })
+                // loser[0].innerHTML = `You lost. Press button to restart.`;
+                // docUnderScore[0].innerHTML = arg1.join(' ');
+                // document.removeEventListener('keypress', tester)
+                // button.style.visibility = "visible"
+                // }
+            }
         }
 
     }
@@ -61,11 +98,11 @@ class Game extends React.Component {
     render() {
         console.log('Game state', this.state);
 
-        let { rightGuesses } = this.state
+        let { rightGuesses, wrongGuesses } = this.state
         return (
             <div className='game'>
                 <input type="text" onKeyPress={this.handleInput} />
-                <Display hiddenWord={this.props.hiddenWord} rightGuesses={rightGuesses} />
+                <Display hiddenWord={this.props.hiddenWord} rightGuesses={rightGuesses} wrongGuesses={wrongGuesses} />
             </div>
         )
     }

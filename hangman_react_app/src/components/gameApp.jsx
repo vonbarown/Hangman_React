@@ -10,7 +10,6 @@ class App extends React.Component {
             word: '',
             splitWord: [],
             hiddenWord: [],
-            maxTries: 10,
         }
     }
 
@@ -59,7 +58,7 @@ class App extends React.Component {
                 <div className='title'>
                     <h1>HangMan</h1>
                 </div>
-                <Game splitWord={splitWord} hiddenWord={hiddenWord} />
+                <Game splitWord={splitWord} hiddenWord={hiddenWord} maxTries={this.props.maxTries} />
             </div>
         );
     }
