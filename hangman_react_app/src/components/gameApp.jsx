@@ -1,18 +1,13 @@
-import React from "react";
-import words from "./words";
+import React, { Component } from "react";
 import Game from "./Game";
+import randomWords from "random-words";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.initialState = {
-      wordArr: words,
-      word: "",
-      splitWord: [],
-      hiddenWord: [],
-    };
-    this.state = this.initialState;
-  }
+class App extends Component {
+  state = {
+    word: "",
+    splitWord: [],
+    hiddenWord: [],
+  };
 
   componentDidMount() {
     this.randomGen();
@@ -25,8 +20,7 @@ class App extends React.Component {
   }
 
   randomGen = () => {
-    const { wordArr } = this.state;
-    let generatedWord = wordArr[Math.floor(Math.random() * words.length)];
+    let generatedWord = randomWords();
     this.setState({
       word: generatedWord,
       splitWord: generatedWord.split(""),
