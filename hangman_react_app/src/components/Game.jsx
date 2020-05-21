@@ -11,17 +11,30 @@ class Game extends React.Component {
     wrongGuesses: [],
   };
 
+  componentDidMount() {
+    window.addEventListener(
+      "keydown",
+      (e) => {
+        this.setState({
+          key: e.key,
+        });
+        console.log("code", e.key);
+      },
+      true
+    );
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.key !== prevState.key) {
       this.validity();
     }
   }
 
-  handleInput = (e) => {
-    this.setState({
-      key: String.fromCharCode(e.charCode),
-    });
-  };
+  //   handleInput = (e) => {
+  //     this.setState({
+  //       key: e.key,
+  //     });
+  //   };
 
   //keeps track of the users right guesses
   checkRightGuess = (userInput) => {
@@ -100,7 +113,7 @@ class Game extends React.Component {
   };
 
   render() {
-    console.log("Game state", this.state);
+    // console.log("Game state", this.state);
 
     let { rightGuesses, wrongGuesses, maxTries, sound, message } = this.state;
     return (
