@@ -1,5 +1,33 @@
 .guesses {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+}
+
+.game {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  /* width: 70vw; */
+}
+.right{
+  background-color: aliceblue;
+}
+
+.wrong{
+  background-color: antiquewhite;
+  width: 50vw;
+  height: 40vh;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  align-items: center;
+}
+
+.restart{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
