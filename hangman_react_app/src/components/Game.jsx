@@ -118,7 +118,6 @@ class Game extends React.Component {
     let { rightGuesses, wrongGuesses, maxTries, sound, message } = this.state;
     return (
       <div className="game">
-        <input type="text" onKeyPress={this.handleInput} />
         <Display
           hiddenWord={this.props.hiddenWord}
           rightGuesses={rightGuesses}

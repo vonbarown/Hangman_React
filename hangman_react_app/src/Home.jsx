@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Home = () => {
+  return (
+    <div className="frontPage">
+      <p>Welcome</p>
+    </div>
+  );
+};
 
-    return (
-        <img src="https://f4.bcbits.com/img/a3002435732_10.jpg" alt="hangman" className='frontPage' />
-    )
-}
-
-export default Home
+export default Home;
