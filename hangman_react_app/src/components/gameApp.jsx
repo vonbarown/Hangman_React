@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="title">
-          <h1>HangMan</h1>
+          <h1>Hang Man</h1>
         </div>
         <Game
           splitWord={splitWord}

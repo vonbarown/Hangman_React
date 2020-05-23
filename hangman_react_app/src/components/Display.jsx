@@ -12,7 +12,7 @@ const Display = ({
   return (
     <div className="display">
       <p>You hav {maxTries} chances remaining</p>
-      <p>{hiddenWord.join(" ")}</p>
+      <p className="hidden">{hiddenWord.join(" ")}</p>
       <div className="guesses">
         <div className="right">
           <p>Right Guesses</p>

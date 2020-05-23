@@ -9,11 +9,11 @@
   align-items: center;
   /* width: 70vw; */
 }
-.right{
+.right {
   background-color: aliceblue;
 }
 
-.wrong{
+.wrong {
   background-color: antiquewhite;
   width: 50vw;
   height: 40vh;
@@ -26,8 +26,11 @@
   align-items: center;
 }
 
-.restart{
+.restart {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+}
+.hidden {
+  font-size: 50px;
 }

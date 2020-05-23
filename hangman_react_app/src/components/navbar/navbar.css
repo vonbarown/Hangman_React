@@ -1,0 +1,141 @@
+nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10%;
+  width: 97.1vw;
+  border: 1px solid black;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 20px;
+  background-color: cadetblue;
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.555);
+  border-end-end-radius: 5px;
+  border-end-start-radius: 5px;
+  height: 5vh;
+}
+.nav-items {
+  display: flex;
+  gap: 10%;
+  width: 80.1vw;
+  align-items: center;
+}
+
+.toggle-button {
+  padding: 0;
+  width: 36px;
+  height: 24px;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: transparent;
+}
+
+.darkMode .toggler-line {
+  background-color: white;
+}
+
+.toggler-line {
+  background-color: black;
+}
+
+.logo {
+  display: flex;
+  color: black;
+  border: 1px solid black;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-items: center;
+  width: 10vw;
+  position: relative;
+  border-radius: 10px;
+  /* margin-left: -20%; */
+  justify-content: center;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  font-size: 15px;
+  height: 5vh;
+}
+
+/* .links {
+  width: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 90px;
+  border: 1px solid black;
+  padding-left: 100px;
+  padding-right: 100px;
+} */
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-links:hover {
+  text-decoration: underline;
+}
+
+.test {
+  display: flex;
+  left: -600px;
+}
+
+.hamburgerDropDown a {
+  color: white;
+}
+
+@media screen and (min-width: 811px) {
+  .sidebar-toggle-button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .open .logo {
+    width: 28vw;
+    top: 0;
+  }
+  .navbar .nav-items {
+    display: none;
+  }
+}
+
+.nav-button:hover {
+  color: teal;
+}
+
+.side-drawer {
+  top: 0;
+  left: 0;
+  gap: 30px;
+  width: 50%;
+  height: 100%;
+  z-index: 200;
+  font-size: 30px;
+  position: fixed;
+  max-width: 400px;
+  align-items: center;
+  flex-direction: column;
+  transform: translateX(-200%);
+  transition: transform 0.9s ease-out;
+}
+
+.side-drawer .open {
+  z-index: 600;
+  transform: translateX(0);
+}
+.open {
+  left: 0;
+  gap: 30px;
+  width: 50%;
+  height: 100%;
+  z-index: 200;
+  display: flex;
+  font-size: 30px;
+  position: fixed;
+  flex-direction: column;
+  transition: transform 0.3s ease-out;
+}
